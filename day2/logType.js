@@ -1,39 +1,39 @@
 function logType(arg) {
     switch (typeof arg) {
         case "undefined":
-            return "undefined!";
+            console.log("undefined!");
         case "string":
-            return "String!";
+            console.log("String!");
         case "number": {
-            return Number.isNaN(arg) ? "Not A Number!" : "Number!";
+            console.log(Number.isNaN(arg) ? "Not A Number!" : "Number!");
         }
         case "function":
-            return "function!";
+            console.log("function!");
         case "boolean":
-            return "bool";
+            console.log("bool");
         case "bigint":
-            return "bigint!";
+            console.log("bigint!");
         case "object": {
             if (arg == null) {
-                return "null!";
+                console.log("null!");
             } else if (Array.isArray(arg)) {
-                return "array!";
+                console.log("array!");
             }
-            return "object!";
+            console.log("object!");
         }
         default:
-            return "I have no idea!";
+            console.log("I have no idea!");
     }
 }
 
-console.log(logType(undefined));
-console.log(logType(null));
-console.log(logType(2));
-console.log(logType(NaN));
-console.log(logType(""));
-console.log(logType(false));
-console.log(logType(BigInt(100)));
-console.log(logType(1234567890123456789012345678901234567890n));
-console.log(logType(function () {}));
-console.log(logType({}));
-console.log(logType([]));
+logType(undefined);
+logType(null);
+logType(2);
+logType(NaN);
+logType("");
+logType(false);
+logType(BigInt(100));
+logType(1234567890123456789012345678901234567890n);
+logType(function () {});
+logType({});
+logType([]);

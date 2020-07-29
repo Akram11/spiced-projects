@@ -6,7 +6,7 @@ var a = {
 
 var b = {};
 
-for (k in a) {
+for (var k in a) {
     b[a[k]] = k;
 }
 console.log(b);
