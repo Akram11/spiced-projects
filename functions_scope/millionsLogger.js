@@ -1,7 +1,6 @@
 function millionsLogger(n) {
     if (n <= 0 || isNaN(n)) {
-        console.log("error!");
-        return;
+        return "error!";
     }
     return n >= 1000000 ? n : millionsLogger(n * 10);
 }

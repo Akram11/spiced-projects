@@ -1,6 +1,14 @@
-setTimeout(() => {
+function waitThenRun(callback) {
+    setTimeout(callback, 1500);
+}
+
+function sayHi() {
     console.log("Hello!");
-    setTimeout(() => {
-        console.log("GoodBye!");
-    }, 1500);
-}, 1500);
+}
+
+function sayBye() {
+    console.log("Bye!");
+}
+
+waitThenRun(sayBye);
+waitThenRun(sayHi);
