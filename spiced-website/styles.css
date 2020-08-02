@@ -3,15 +3,25 @@
 }
 
 body {
-    background-color: white;
+    background-color: Gainsboro;
     color: black;
     padding: 0px;
     margin: 0px;
+    min-width: 330px;
 }
 
 header {
     padding: 10px;
     overflow: hidden;
+    background-color: white;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    margin-bottom: -10px;
 }
 
 #logo {
@@ -48,8 +58,124 @@ header {
     transform: translate(-50%, -50%);
 }
 
-.svg {
+.hero-button {
+    border: 5px solid darkgoldenrod;
+    padding: 7px 20px;
+    border-radius: 20px;
+    margin: 0;
+    font-weight: bold;
+    background: yellow;
+    color: darkgoldenrod;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1rem;
+}
+
+button:hover,
+button:focus {
+    background: #ffd700;
+    outline: 0;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+.features {
+    width: 90%;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.feature {
+    width: 50%;
+    float: left;
+    height: auto;
+}
+
+.svg-container {
+    padding: 25px 10px;
+    float: left;
+}
+
+.feature img {
     width: 50px;
     height: 50px;
-    display: inline-block;
+    display: block;
+}
+p {
+    padding-right: 10px;
+}
+
+/* MEDIA QUERIES */
+
+@media (prefers-color-scheme: dark) {
+    body,
+    header {
+        background-color: dimgrey;
+    }
+    h1 {
+        color: antiquewhite;
+    }
+    img {
+        filter: brightness(60%);
+    }
+    .hero {
+        filter: brightness(80%);
+    }
+}
+
+@media screen and (min-width: 200px) and (max-width: 800px) {
+    .feature {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 420px) and (max-width: 700px) {
+    #logo {
+        width: 170px;
+        height: 30px;
+        float: left;
+        margin: auto;
+        vertical-align: middle;
+    }
+
+    #menu {
+        width: 30px;
+        height: 30px;
+        float: right;
+    }
+    .features {
+        width: 100%;
+        margin: 0;
+    }
+    .svg-container {
+        padding-top: 25px;
+    }
+}
+
+@media screen and (min-width: 310px) and (max-width: 420px) {
+    #logo {
+        width: 130px;
+        height: 25px;
+        float: left;
+        margin: auto;
+        vertical-align: middle;
+    }
+
+    #menu {
+        width: 22px;
+        height: 22px;
+        float: right;
+    }
+    .svg-container {
+        padding-top: 30px;
+    }
+    p {
+        font-size: 12px;
+    }
+    .hero-button {
+        font-size: 0.8rem;
+    }
 }
