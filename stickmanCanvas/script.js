@@ -1,4 +1,8 @@
 var cx = document.getElementById("canv").getContext("2d");
+var pcx = document.getElementById("parent").getContext("2d");
+
+var x = 0;
+var y = 0;
 
 cx.beginPath();
 cx.strokeStyle = "blue";
@@ -14,3 +18,21 @@ function drawline(mx, my, lx, ly) {
     cx.lineTo(lx, ly);
     cx.stroke();
 }
+
+pcx.drawImage(document.getElementById("canv"), x, y);
+
+window.onkeydown = function (event) {
+    var keyPr = event.keyCode;
+
+    if (keyPr === 39 && x <= 320) {
+        x = x + 20;
+    } else if (keyPr === 37 && x > -320) {
+        x = x - 20;
+    } else if (keyPr === 38 && y > -40) {
+        y = y - 20;
+    } else if (keyPr === 40 && y < 150) {
+        y = y + 20;
+    }
+    pcx.clearRect(0, 0, 800, 600);
+    pcx.drawImage(document.getElementById("canv"), x, y);
+};
