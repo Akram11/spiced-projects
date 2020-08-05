@@ -108,6 +108,71 @@ p {
     padding-right: 10px;
 }
 
+#side-nav {
+    height: 100%;
+    width: 25%;
+    position: fixed;
+    top: 0;
+    left: 100%;
+    background-color: white;
+    z-index: 1002;
+    transition: 1s;
+}
+
+#side-nav ul {
+    width: 100%;
+    list-style-type: none;
+    position: relative;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #000;
+    opacity: 0.7;
+    z-index: 1001;
+    visibility: hidden;
+}
+
+#side-nav a {
+    text-decoration: none;
+    color: blue;
+    cursor: pointer;
+}
+
+#side-nav a:hover {
+    text-decoration: underline;
+}
+
+#side-nav li {
+    margin-top: 40px;
+    font-size: 1.5em;
+}
+
+#side-nav li:last-child {
+    margin-top: 40px;
+    font-size: 1em;
+}
+
+.slide {
+    transition-property: transform;
+    transition-duration: 1s;
+    transform: translateX(-100%);
+}
+
+#close {
+    position: relative;
+    left: 90%;
+    color: gray;
+    top: 10;
+    font-family: "ubuntu";
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
 /* MEDIA QUERIES */
 
 @media (prefers-color-scheme: dark) {
@@ -153,21 +218,19 @@ p {
     .svg-container {
         padding-top: 25px;
     }
+    #side-nav {
+        width: 35%;
+    }
 }
 
 @media screen and (min-width: 310px) and (max-width: 420px) {
     #logo {
-        width: 130px;
-        height: 25px;
-        float: left;
-        margin: auto;
-        vertical-align: middle;
+        width: 100px;
+        height: 20px;
     }
-
     #menu {
         width: 22px;
         height: 22px;
-        float: right;
     }
     .svg-container {
         padding-top: 30px;
@@ -177,5 +240,13 @@ p {
     }
     .hero-button {
         font-size: 0.8rem;
+    }
+    #side-nav {
+        width: 50%;
+    }
+
+    #side-nav li {
+        margin-top: 40px;
+        font-size: 1em;
     }
 }
