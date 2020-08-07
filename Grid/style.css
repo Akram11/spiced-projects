@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    display: grid;
+    height: 100vh;
+    grid-template-rows: 70px 1fr 30px;
+    /* grid-template-columns: 1fr; */
+}
+
+header {
+    background: #924321;
+}
+
+footer {
+    background: pink;
+}
+
+main {
+    background: dimgrey;
+}
