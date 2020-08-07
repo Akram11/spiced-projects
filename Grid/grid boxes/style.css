@@ -38,8 +38,7 @@
 
 #yellow {
     background-color: yellow;
-    grid-column: 2/3;
-    grid-row: 2/3;
+    grid-area: 2 / 2 / 3 / 3;
 }
 
 #pink {
@@ -48,6 +47,5 @@
 
 #green {
     background-color: green;
-    grid-column: 1/2;
-    grid-row: 2/3;
+    grid-area: 2 / 1 / 3 / 2;
 }
