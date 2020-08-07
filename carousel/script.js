@@ -1,26 +1,23 @@
 (function () {
     var kitties = document.querySelectorAll(".kitty-container img");
-    var counter = 0;
+    var currentKittie = 0;
 
     function moveKitties() {
-        kitties[counter].classList.remove("onscreen");
-        kitties[counter].classList.add("offscreen-left");
-        kitties[++counter].classList.add("onscreen");
-
-        if (counter < kitties.length - 1) {
-            console.log("if", counter);
-            setTimeout(moveKitties, 2000);
-        } else {
-            counter = 0;
-            setTimeout(moveKitties, 2000);
-            console.log("else", counter);
+        kitties[currentKittie].classList.remove("onscreen");
+        kitties[currentKittie].classList.add("offscreen-left");
+        currentKittie++;
+        if (currentKittie >= kitties.length) {
+            currentKittie = 0;
         }
+        kitties[currentKittie].classList.add("onscreen");
     }
 
-    setTimeout(moveKitties, 2000);
-
     document.addEventListener("transitionend", function (e) {
-        e.target.classList.contains("offscreen-left") &&
+        if (e.target.classList.contains("offscreen-left")) {
             e.target.classList.remove("offscreen-left");
+            setTimeout(moveKitties, 3000);
+        }
     });
+
+    setTimeout(moveKitties, 3000);
 })();
