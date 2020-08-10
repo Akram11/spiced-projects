@@ -25,3 +25,23 @@ body {
     transform: translateX(-100%);
     transition: transform 3s;
 }
+
+.dots-container {
+    position: absolute;
+    bottom: 150px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.dot {
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+    border-radius: 50%;
+    border: 5px solid gray;
+}
+
+.on {
+    background: cyan;
+}
