@@ -2,20 +2,22 @@
     margin: 0;
 }
 body {
+    margin: 50px 0;
     height: 100vh;
-    background: rgb(0, 26, 36);
-    background: radial-gradient(
-        circle,
-        rgba(0, 26, 36, 0.9060574913559174) 42%,
-        rgba(9, 108, 121, 0.7239846622242647) 67%,
-        rgba(65, 70, 168, 1) 87%,
-        rgba(73, 65, 175, 1) 88%,
-        rgba(169, 0, 255, 1) 100%
-    );
+    background: #8e0e00; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+        to bottom,
+        #1f1c18,
+        #8e0e00
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+        to bottom,
+        #1f1c18,
+        #8e0e00
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 #board {
-    padding: 100px 0;
     display: flex;
 }
 
@@ -23,10 +25,21 @@ body {
     height: 100px;
     width: 100px;
     overflow: hidden;
+    animation-name: fall-animation;
+    animation-duration: 500ms;
+}
+
+@keyframes fall-animation {
+    from {
+        transform: translateY(-500px);
+    }
+    to {
+        transform: translateY(0);
+    }
 }
 
 .hole {
-    border: 40px solid navy;
+    border: 40px solid rgb(45, 146, 141);
     height: 80px;
     width: 80px;
     border-radius: 50%;
@@ -40,15 +53,15 @@ body {
 }
 
 .player1 {
-    background-color: tomato;
+    background-color: #7b4397;
 }
 
 .player2 {
-    background-color: green;
+    background-color: #00bf8f;
 }
 
 .modal {
-    background-color: gray;
+    background-color: #ffffff;
     position: fixed;
     top: 40%;
     left: 30%;
@@ -62,9 +75,7 @@ body {
     flex-direction: column;
     padding: 50px;
     border-radius: 5%;
-
-    /* transform: translate(-50%, -50%); */
-    animation: show 0.2s;
+    animation: show 0.3s;
     -webkit-animation: scale-up-center 0.4s ease-in both;
     animation: scale-up-center 0.4s ease-in both;
 }
@@ -108,6 +119,8 @@ body {
 
 .closed {
     display: none;
-    animation: hide 0.25s;
-    transform: scale(0);
+}
+
+#reset {
+    height: 30px;
 }

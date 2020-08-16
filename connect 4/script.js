@@ -15,8 +15,6 @@
                     .addClass(currentPlayer)
                     .addClass("f" + forward)
                     .addClass("b" + backward);
-
-                // .addClass("" + col.index() - i);
                 break;
             }
         }
@@ -37,7 +35,7 @@
         } else if (checkForVictory(slotsInbackwardDiagonal)) {
             openModal(currentPlayer + " has won!");
         } else if ($(".player1").length + $(".player2").length == 42) {
-            openModal("IT WAS A TIE");
+            openModal("IT Was A Draw");
         } else {
             switchPlayer();
         }
