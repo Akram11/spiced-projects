@@ -26,24 +26,24 @@
         }
         var slotsInforwarDiagonal = $(".f" + forward);
         var slotsInbackwardDiagonal = $(".b" + backward);
-
         var slotsInRow = $(".row" + i).parent();
 
         if (checkForVictory(slotsInCol)) {
             openModal(currentPlayer + " has won!");
         } else if (checkForVictory(slotsInRow)) {
-            console.log("win ROW");
+            openModal(currentPlayer + " has won!");
         } else if (checkForVictory(slotsInforwarDiagonal)) {
-            console.log("Win Diagonal forward");
+            openModal(currentPlayer + " has won!");
         } else if (checkForVictory(slotsInbackwardDiagonal)) {
-            console.log("Win Diagonal Backward");
+            openModal(currentPlayer + " has won!");
+        } else if ($(".player1").length + $(".player2").length == 42) {
+            openModal("IT WAS A TIE");
         } else {
             switchPlayer();
         }
     });
 
     function checkForVictory(slots) {
-        console.log(slots.length);
         if (slots.length < 4) {
             return;
         }
@@ -74,10 +74,13 @@
     function closeModal() {
         modal.addClass("closed");
         overlay.addClass("closed");
+        location.reload();
     }
     function openModal(text) {
         winnerText.append(text);
         modal.removeClass("closed");
         overlay.removeClass("closed");
     }
+
+    $("#reset").on("click", closeModal);
 })();
