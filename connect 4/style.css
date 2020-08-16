@@ -1,8 +1,21 @@
 * {
     margin: 0;
 }
+body {
+    height: 100vh;
+    background: rgb(0, 26, 36);
+    background: radial-gradient(
+        circle,
+        rgba(0, 26, 36, 0.9060574913559174) 42%,
+        rgba(9, 108, 121, 0.7239846622242647) 67%,
+        rgba(65, 70, 168, 1) 87%,
+        rgba(73, 65, 175, 1) 88%,
+        rgba(169, 0, 255, 1) 100%
+    );
+}
 
 #board {
+    padding: 100px 0;
     display: flex;
 }
 
@@ -96,18 +109,5 @@
 .closed {
     display: none;
     animation: hide 0.25s;
-
     transform: scale(0);
-}
-@keyframes hide {
-    from {
-        z-index: 2;
-        transform: scale(1);
-        opacity: 1;
-    }
-    to {
-        z-index: -1;
-        transform: scale(0);
-        opacity: 0;
-    }
 }
