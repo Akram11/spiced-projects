@@ -1,4 +1,35 @@
+body {
+    background-color: #191414;
+    color: #ffffff;
+    font: 14px/19px "Helvetica", "Arial", sans-serif;
+}
+
 .results-for {
     font: size 1.5;
     font-weight: bold;
+    padding-top: 10px;
+}
+
+.artist-img {
+    height: 160px;
+    width: 160px;
+}
+
+.artist-card {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    height: 160px;
+    width: 600px;
+    background-color: #222326;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.show-more {
+    display: none;
+}
+
+.show {
+    display: block;
 }
