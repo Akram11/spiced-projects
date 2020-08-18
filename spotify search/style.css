@@ -5,12 +5,14 @@ body {
 }
 
 .results-for {
-    font: size 1.5;
+    font-size: 25px;
     font-weight: bold;
-    padding-top: 10px;
+    padding-top: 25px 0;
 }
 
 .artist-img {
+    align-self: center;
+    border-radius: 50%;
     height: 160px;
     width: 160px;
 }
@@ -18,8 +20,10 @@ body {
 .artist-card {
     display: flex;
     flex-direction: row;
+    border-radius: 10px;
+    /* align-items: center; */
     margin: 10px;
-    height: 160px;
+    height: 180px;
     width: 600px;
     background-color: #222326;
     text-decoration: none;
@@ -33,3 +37,6 @@ body {
 .show {
     display: block;
 }
+
+/* #name {
+} */

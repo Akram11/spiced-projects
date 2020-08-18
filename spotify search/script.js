@@ -2,8 +2,6 @@
     var submitButton = $(".submit-button");
     var showButton = $(".show-more");
     var nextUrl;
-
-    function ajaxCall(url, input, choice) {}
     submitButton.on("click", function () {
         var userInput = $("input[name='search']").val();
         var artistOrAlbum = $(".artist-or-album").val();
@@ -15,7 +13,7 @@
             },
             success: function (payload) {
                 payload = payload.artists || payload.albums;
-                console.log(payload);
+                // console.log(payload);
                 if (payload.next) {
                     nextUrl = payload.next.replace(
                         "https://api.spotify.com/v1/search",
@@ -30,24 +28,28 @@
                             : `NO Ruslts for: ${userInput}`
                     }`
                 );
-                var resultsCards = "";
-                for (var i = 0; i < payload.items.length; i++) {
-                    console.log(payload.items[i].images);
-                    resultsCards += `<a class="artist-card" href="${
-                        payload.items[i].external_urls.spotify
-                    }"><img class="artist-img" src="${
-                        payload.items[i].images.length == 0
-                            ? "https://developer.spotify.com/assets/branding-guidelines/icon3@2x.png"
-                            : payload.items[i].images[0].url
-                    }">
-                    <p>  ${payload.items[i].name}  </p> </a>`;
-                }
+
+                $(".results-container").html(getResults(payload.items));
+
                 if (payload.total > 20) {
                     showButton.addClass("show");
                 }
-
-                $(".results-container").html(resultsCards);
             },
         });
     });
+
+    function getResults(items) {
+        var html = "";
+        for (var i = 0; i < items.length; i++) {
+            html += `<a class="artist-card" href="${
+                items[i].external_urls.spotify
+            }"><img class="artist-img" src="${
+                items[i].images.length == 0
+                    ? "https://developer.spotify.com/assets/branding-guidelines/icon3@2x.png"
+                    : items[i].images[0].url
+            }">
+                    <p id = "name">  ${items[i].name}  </p> </a>`;
+        }
+        return html;
+    }
 })();
