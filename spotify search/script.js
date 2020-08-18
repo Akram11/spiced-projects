@@ -32,15 +32,31 @@
         });
     });
 
-    $(document).on("click", ".show-more", function (e) {
-        $.ajax({
-            url: nextUrl,
-            success: function (payload) {
-                payload = payload.artists || payload.albums;
-                setNextUrl(payload.next);
-                $(".results-container").append(getResults(payload.items));
-            },
-        });
+    // $(document).on("click", ".show-more", function (e) {
+    //     $.ajax({
+    //         url: nextUrl,
+    //         success: function (payload) {
+    //             payload = payload.artists || payload.albums;
+    //             setNextUrl(payload.next);
+    //             $(".results-container").append(getResults(payload.items));
+    //         },
+    //     });
+    // });
+
+    $(window).scroll(function () {
+        if (
+            $(window).scrollTop() >=
+            $(document).height() - $(window).height()
+        ) {
+            $.ajax({
+                url: nextUrl,
+                success: function (payload) {
+                    payload = payload.artists || payload.albums;
+                    setNextUrl(payload.next);
+                    $(".results-container").append(getResults(payload.items));
+                },
+            });
+        }
     });
 
     function setNextUrl(next) {

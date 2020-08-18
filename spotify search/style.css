@@ -81,3 +81,9 @@ select {
 .submit-button {
     background-color: #1db954;
 }
+
+option {
+    font-size: 12px;
+    border-radius: 150px;
+    /* background-color: red; */
+}
