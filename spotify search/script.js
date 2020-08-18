@@ -1,42 +1,56 @@
 (function () {
     var submitButton = $(".submit-button");
-    var showButton = $(".show-more");
+    var artistOrAlbum = $(".artist-or-album").val();
+    var input = $("input");
     var nextUrl;
     submitButton.on("click", function () {
-        var userInput = $("input[name='search']").val();
-        var artistOrAlbum = $(".artist-or-album").val();
         $.ajax({
             url: "https://spicedify.herokuapp.com/spotify",
             data: {
-                query: userInput,
+                query: input.val(),
                 type: artistOrAlbum,
             },
             success: function (payload) {
                 payload = payload.artists || payload.albums;
-                // console.log(payload);
-                if (payload.next) {
-                    nextUrl = payload.next.replace(
-                        "https://api.spotify.com/v1/search",
-                        "https://spicedify.herokuapp.com/spotify"
-                    );
-                }
+
+                setNextUrl(payload.next);
 
                 $(".results-for").html(
                     `${
                         payload.items.length
-                            ? `Ruslts for: ${userInput}`
-                            : `NO Ruslts for: ${userInput}`
+                            ? `Results for: ${input.val()}`
+                            : `NO Results for: ${input.val()}`
                     }`
                 );
 
                 $(".results-container").html(getResults(payload.items));
 
                 if (payload.total > 20) {
-                    showButton.addClass("show");
+                    $(".show-more").addClass("show");
                 }
             },
         });
     });
+
+    $(document).on("click", ".show-more", function (e) {
+        $.ajax({
+            url: nextUrl,
+            success: function (payload) {
+                payload = payload.artists || payload.albums;
+                setNextUrl(payload.next);
+                $(".results-container").append(getResults(payload.items));
+            },
+        });
+    });
+
+    function setNextUrl(next) {
+        nextUrl =
+            next &&
+            next.replace(
+                "api.spotify.com/v1/search",
+                "spicedify.herokuapp.com/spotify"
+            );
+    }
 
     function getResults(items) {
         var html = "";
