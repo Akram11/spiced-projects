@@ -1,4 +1,16 @@
 (function () {
+    ///////////////// BOILERPLATE /////////////////
+    Handlebars.templates = Handlebars.templates || {};
+
+    var templates = document.querySelectorAll(
+        'script[type="text/x-handlebars-template"]'
+    );
+
+    Array.prototype.slice.call(templates).forEach(function (script) {
+        Handlebars.templates[script.id] = Handlebars.compile(script.innerHTML);
+    });
+    ///////////////// BOILERPLATE /////////////////
+    var spotifyData = {};
     var submitButton = $(".submit-button");
     var artistOrAlbum = $(".artist-or-album").val();
     var input = $("input");
@@ -12,8 +24,13 @@
             },
             success: function (payload) {
                 payload = payload.artists || payload.albums;
-
+                spotifyData.entries = payload.items;
+                console.log(spotifyData);
                 setNextUrl(payload.next);
+                linkData(spotifyData);
+                // $(".results-container").html(
+                //     Handlebars.templates.entriesId(spotifyData)
+                // );
 
                 $(".results-for").html(
                     `${
@@ -23,11 +40,11 @@
                     }`
                 );
 
-                $(".results-container").html(getResults(payload.items));
+                // $(".results-container").html(getResults(payload.items));
 
-                if (payload.total > 20) {
-                    $(".show-more").addClass("show");
-                }
+                // if (payload.total > 20) {
+                //     $(".show-more").addClass("show");
+                // }
             },
         });
     });
@@ -53,7 +70,12 @@
                 success: function (payload) {
                     payload = payload.artists || payload.albums;
                     setNextUrl(payload.next);
-                    $(".results-container").append(getResults(payload.items));
+                    spotifyData.entries += payload.entries;
+                    linkData(spotifyData);
+                    // $(".results-container").html(
+                    //     Handlebars.templates.entriesId(spotifyData)
+                    // );
+                    // $(".results-container").append(getResults(payload.items));
                 },
             });
         }
@@ -68,18 +90,22 @@
             );
     }
 
-    function getResults(items) {
-        var html = "";
-        for (var i = 0; i < items.length; i++) {
-            html += `<a class="artist-card" href="${
-                items[i].external_urls.spotify
-            }"><img class="artist-img" src="${
-                items[i].images.length == 0
-                    ? "https://developer.spotify.com/assets/branding-guidelines/icon3@2x.png"
-                    : items[i].images[0].url
-            }">
-                    <p id = "name">  ${items[i].name}  </p> </a>`;
-        }
-        return html;
+    function linkData(data) {
+        $(".results-container").html(Handlebars.templates.entriesId(data));
     }
+
+    // function getResults(items) {
+    //     var html = "";
+    //     for (var i = 0; i < items.length; i++) {
+    //         html += `<a class="artist-card" href="${
+    //             items[i].external_urls.spotify
+    //         }"><img class="artist-img" src="${
+    //             items[i].images.length == 0
+    //                 ? "https://developer.spotify.com/assets/branding-guidelines/icon3@2x.png"
+    //                 : items[i].images[0].url
+    //         }">
+    //                 <p id = "name">  ${items[i].name}  </p> </a>`;
+    //     }
+    //     return html;
+    // }
 })();

@@ -18,9 +18,29 @@
         </div>
         <div class="results-for"></div>
         <div class="results-container"></div>
+        <script id="entriesId" type="text/x-handlebars-template">
+            {{#entries}}
+                <a class="artist-card" href={{external_urls.spotify}}>
+                    <!-- <img class="artist-img" src="${
+                items[i].images.length == 0
+                    ? "https://developer.spotify.com/assets/branding-guidelines/icon3@2x.png"
+                    : items[i].images[0].url
+            }"> -->
+                    {{#with images}}
+                        <img class="artist-img" src="{{0.url}}" alt={{name}} />
+                    {{/with}}
+                    <p id="name">
+                        {{name}}
+                    </p>
+                </a>
+            {{/entries}}
+        </script>
+        <div class="dogs-info"></div>
+
         <div class="show-more">
             <button class="show-more">more</button>
         </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="script.js"></script>
     </body>
