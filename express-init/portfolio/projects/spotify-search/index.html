@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="style.css" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>talk to spotify</title>
+    </head>
+    <body>
+        <h1>Search through Spotify</h1>
+        <div class="container">
+            <input type="text" name="search" value="" placeholder="Search" />
+            <select class="artist-or-album">
+                <option>artist</option>
+                <option>album</option>
+            </select>
+            <button class="submit-button" type="button">search</button>
+        </div>
+        <div class="results-for"></div>
+        <div class="results-container"></div>
+        <script id="entriesId" type="text/x-handlebars-template">
+            {{#entries}}
+                <a class="artist-card" href={{external_urls.spotify}}>
+                    <!-- <img class="artist-img" src="${
+                items[i].images.length == 0
+                    ? "https://developer.spotify.com/assets/branding-guidelines/icon3@2x.png"
+                    : items[i].images[0].url
+            }"> -->
+                    {{#with images}}
+                        <img class="artist-img" src="{{0.url}}" alt={{name}} />
+                    {{/with}}
+                    <p id="name">
+                        {{name}}
+                    </p>
+                </a>
+            {{/entries}}
+        </script>
+        <div class="dogs-info"></div>
+
+        <div class="show-more">
+            <button class="show-more">more</button>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
