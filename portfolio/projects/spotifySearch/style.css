@@ -1,0 +1,90 @@
+body {
+    padding: 15px;
+    background-color: #191414;
+    color: #ffffff;
+    font: 14px/19px "Helvetica", "Arial", sans-serif;
+}
+
+.results-for {
+    font-size: 25px;
+    font-weight: bold;
+    padding: 25px 0;
+}
+
+.artist-img {
+    align-self: center;
+    border-radius: 50%;
+    height: 160px;
+    width: 160px;
+    margin: 0 25px 0 10px;
+    /* margin-right: 25px; */
+}
+
+.artist-card {
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    /* align-items: center; */
+    margin: 10px;
+    height: 180px;
+    width: 600px;
+    background-color: #222326;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.show-more {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+#name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+input {
+    color: #000;
+    padding: 6px 48px;
+    height: 40px;
+    width: 200px;
+    border: 0;
+    border-radius: 500px;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.015em;
+    outline: none;
+    color: black;
+}
+
+.submit-button,
+select {
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 700;
+    letter-spacing: 1.76px;
+    text-transform: uppercase;
+    border: 2px solid transparent;
+    border-radius: 500px;
+    color: black;
+    white-space: nowrap;
+    padding: 8px 34px;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    outline: none;
+}
+
+.submit-button {
+    background-color: #1db954;
+}
+
+option {
+    font-size: 12px;
+    border-radius: 150px;
+    /* background-color: red; */
+}
