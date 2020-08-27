@@ -4,7 +4,7 @@ const basicAuth = require("basic-auth");
 
 const auth = function (req, res, next) {
     const creds = basicAuth(req);
-    if (!creds || creds.name != "x" || creds.pass != "tu") {
+    if (!creds || creds.name != "ff" || creds.pass != "tu") {
         res.setHeader(
             "WWW-Authenticate",
             'Basic realm="Enter your credentials to see this stuff."'
@@ -14,7 +14,6 @@ const auth = function (req, res, next) {
         next();
     }
 };
-
 app.use(require("cookie-parser")());
 app.use(express.urlencoded({ extended: false }));
 
@@ -26,6 +25,7 @@ app.use(function (req, res, next) {
         next();
     }
 });
+app.get("/carousel", auth);
 app.use(express.static(__dirname + "/portfolio/projects"));
 
 app.get("/", (req, res) => {
@@ -59,7 +59,4 @@ app.post("/cookies", (req, res) => {
         );
     }
 });
-app.use(auth);
-app.use(express.static(__dirname + "/portfolio/secure"));
-
 app.listen(8080, () => console.log("Server Listening!"));
