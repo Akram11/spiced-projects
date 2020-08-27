@@ -3,33 +3,19 @@ const app = express();
 
 app.use(require("cookie-parser")());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(__dirname + "/portfolio/projects/connect4"));
-app.use(express.static(__dirname + "/portfolio/projects/carousel"));
-app.use(express.static(__dirname + "/portfolio/projects/spotify-search"));
 
-app.use((req, res, next) => {
-    if (req.cookies.auth) {
-        console.log("this user has already accepted cookies");
+app.use(function (req, res, next) {
+    if (!req.cookies.auth && req.url !== "/cookies") {
+        res.cookie("redirectURL", req.url);
+        res.redirect("/cookies");
     } else {
-        // res.redirect("/");
+        next();
     }
-    next();
 });
-
-app.get("/connect4", (req, res) => {
-    res.sendFile(__dirname + "/portfolio/projects/connect4/index.html");
-});
-
-app.get("/carousel", (req, res) => {
-    res.sendFile(__dirname + "/portfolio/projects/carousel/index.html");
-});
-
-app.get("/spotify", (req, res) => {
-    res.sendFile(__dirname + "/portfolio/projects/spotify-search/index.html");
-});
+app.use(express.static(__dirname + "/portfolio/projects"));
 
 app.get("/", (req, res) => {
-    res.send(`<h1>hello express</h1>`);
+    res.redirect("/connect4");
 });
 
 app.get("/cookies", (req, res) => {
@@ -52,9 +38,12 @@ app.post("/cookies", (req, res) => {
     const { cookies } = req.body;
     if (cookies) {
         res.cookie("auth", true);
-        console.log("cookies should be added");
+        res.redirect(req.cookies.redirectURL);
+    } else {
+        res.send(
+            `<h1>You can't browse this site without accepting cookies </h1>`
+        );
     }
-    res.redirect("/");
 });
 
 app.listen(8080, () => console.log("Server Listening!"));
