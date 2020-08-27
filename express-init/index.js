@@ -1,5 +1,19 @@
 const express = require("express");
 const app = express();
+const basicAuth = require("basic-auth");
+
+const auth = function (req, res, next) {
+    const creds = basicAuth(req);
+    if (!creds || creds.name != "x" || creds.pass != "tu") {
+        res.setHeader(
+            "WWW-Authenticate",
+            'Basic realm="Enter your credentials to see this stuff."'
+        );
+        res.sendStatus(401);
+    } else {
+        next();
+    }
+};
 
 app.use(require("cookie-parser")());
 app.use(express.urlencoded({ extended: false }));
@@ -21,15 +35,15 @@ app.get("/", (req, res) => {
 app.get("/cookies", (req, res) => {
     res.send(
         `<form method="post">
-            <h3>
-                to use this site you must accept cookies first! Do you agree to
-                use cookies?
-            </h3>
-            <div>
-                <input type="checkbox" name="cookies" />
-                <span>yes, I agree to use cookies</span>
-            </div>
-            <button> submit </submit>
+        <h3>
+        to use this site you must accept cookies first! Do you agree to
+        use cookies?
+        </h3>
+        <div>
+        <input type="checkbox" name="cookies" />
+        <span>yes, I agree to use cookies</span>
+        </div>
+        <button> submit </submit>
         </form>`
     );
 });
@@ -45,5 +59,7 @@ app.post("/cookies", (req, res) => {
         );
     }
 });
+app.use(auth);
+app.use(express.static(__dirname + "/portfolio/secure"));
 
 app.listen(8080, () => console.log("Server Listening!"));
