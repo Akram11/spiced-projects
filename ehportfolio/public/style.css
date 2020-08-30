@@ -108,3 +108,8 @@ a {
     color: teal;
     font-size: 20px;
 }
+
+.selected {
+    color: teal;
+    /* font-size: 200px; */
+}

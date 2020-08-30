@@ -3,7 +3,15 @@ const app = express();
 const handlebars = require("express-handlebars");
 const projects = require("./projects.json");
 
-app.engine("handlebars", handlebars());
+const hbSet = handlebars.create({
+    helpers: {
+        isActive(path, url) {
+            return path == url;
+        },
+    },
+});
+
+app.engine("handlebars", hbSet.engine);
 app.set("view engine", "handlebars");
 
 app.use(express.static("./projects"));

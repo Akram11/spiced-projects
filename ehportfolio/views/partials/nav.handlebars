@@ -3,7 +3,6 @@
 <div class="project">
     <div class="project-container">
         <div class="preview">
-
             <img src="{{path}}/screenshot.png" alt="{{name}}">
         </div>
         <a href="/projects{{path}}" class="project-name">
@@ -11,10 +10,20 @@
         </a>
     </div>
 </div>
+
+
+{{else}}
+{{#if  (isActive path ../selectedProject.path) }}
+<a href="/projects{{path}}" class="nav-item selected">
+    {{name}}
+</a>
+
 {{else}}
 <a href="/projects{{path}}" class="nav-item">
     {{name}}
 </a>
+{{/if}}
+
 {{/if}}
 
 {{/projects}}
