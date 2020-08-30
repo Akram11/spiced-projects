@@ -1,0 +1,11 @@
+<div class="nav">{{>nav}}</div>
+
+{{#selectedProject}}
+<div class="project-disc">
+    <span class="project-name">{{name}}</span>
+    <img class="desc-img" src="{{path}}/screenshot.png">
+    <p class="project-text">{{description}}</p>
+
+    <a class="project-link" href="{{path}}">Go to the project</a>
+</div>
+{{/selectedProject}}
