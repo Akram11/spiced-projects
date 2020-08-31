@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+}
+
+#ticker {
+    border: 1px black;
+    height: 1.5em;
+    position: relative;
+    overflow: hidden;
+}
+
+#headlines {
+    white-space: nowrap;
+    position: absolute;
+    left: 100%;
+}
+
+#headlines a {
+    font-size: 16px;
+    line-height: 2em;
+    padding: 0 15px;
+    color: #e33d26;
+}
