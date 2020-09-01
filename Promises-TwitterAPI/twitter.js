@@ -1,20 +1,19 @@
 const { Key, Secret } = require("./secrets.json");
 const https = require("https");
 
-module.exports.getToken = function (callback) {
+module.exports.getToken = function () {
+    let creds = `${Key}:${Secret}`;
+    let encodedCreds = Buffer.from(creds).toString("base64");
+    const options = {
+        host: "api.twitter.com",
+        path: "/oauth2/token",
+        method: "POST",
+        headers: {
+            Authorization: `Basic ${encodedCreds}`,
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+        },
+    };
     return new Promise((resolve, reject) => {
-        let creds = `${Key}:${Secret}`;
-        let encodedCreds = Buffer.from(creds).toString("base64");
-        const options = {
-            host: "api.twitter.com",
-            path: "/oauth2/token",
-            method: "POST",
-            headers: {
-                Authorization: `Basic ${encodedCreds}`,
-                "Content-Type":
-                    "application/x-www-form-urlencoded;charset=UTF-8",
-            },
-        };
         const req = https.request(options, cb);
 
         function cb(response) {
@@ -36,7 +35,7 @@ module.exports.getToken = function (callback) {
     });
 };
 
-module.exports.getTweets = function (bearerToken, callback) {
+module.exports.getTweets = function (bearerToken) {
     const options = {
         host: "api.twitter.com",
         path:
@@ -46,24 +45,25 @@ module.exports.getTweets = function (bearerToken, callback) {
             Authorization: "Bearer " + bearerToken,
         },
     };
-    const req = https.request(options, cb);
-
-    function cb(response) {
-        if (response.statusCode != 200) {
-            // something went wrong!
-            console.log("something went wrong: ", response.statusCode);
-            callback(response.statusCode);
+    return new Promise((resolve, reject) => {
+        const req = https.request(options, cb);
+        function cb(response) {
+            if (response.statusCode != 200) {
+                // something went wrong!
+                console.log("something went wrong: ", response.statusCode);
+                reject(response.statusCode);
+            }
+            let body = "";
+            response.on("data", function (chunk) {
+                body += chunk;
+            });
+            response.on("end", function () {
+                const parsedTweets = JSON.parse(body);
+                resolve(parsedTweets);
+            });
         }
-        let body = "";
-        response.on("data", function (chunk) {
-            body += chunk;
-        });
-        response.on("end", function () {
-            const parsedTweets = JSON.parse(body);
-            callback(null, parsedTweets);
-        });
-    }
-    req.end();
+        req.end();
+    });
 };
 
 module.exports.filterTweets = function (tweets) {
