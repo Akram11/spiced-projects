@@ -3,7 +3,7 @@ var leftValue = headlines.offsetLeft;
 
 (function () {
     $.ajax({
-        url: "./data.json",
+        url: "/data.json",
         method: "GET",
         // add_header: "Access-Control-Allow-Origin",
         success: function (response) {
@@ -33,11 +33,11 @@ var leftValue = headlines.offsetLeft;
                 });
 
                 links[i].addEventListener("mouseleave", function () {
-                    requestAnimationFrame(moonwalk);
+                    requestAnimationFrame(moveHeadlines);
                 });
             }
 
-            function moonwalk() {
+            function moveHeadlines() {
                 leftValue--;
 
                 if (leftValue < -links[0].offsetWidth) {
@@ -47,10 +47,10 @@ var leftValue = headlines.offsetLeft;
 
                 headlines.style.left = leftValue + "px";
 
-                animation = requestAnimationFrame(moonwalk);
+                animation = requestAnimationFrame(moveHeadlines);
             }
 
-            moonwalk();
+            moveHeadlines();
         },
         error: function (err) {
             console.log("err", err);

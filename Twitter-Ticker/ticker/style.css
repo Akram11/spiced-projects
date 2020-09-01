@@ -21,3 +21,7 @@ body {
     padding: 0 15px;
     color: #e33d26;
 }
+
+#headlines a:hover {
+    color: blue;
+}
