@@ -11,5 +11,3 @@ module.exports = function fn(value) {
         return null;
     }
 };
-
-// console.log(fn(["help", 213234, "helooeree"]));
