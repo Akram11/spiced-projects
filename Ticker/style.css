@@ -4,21 +4,28 @@ body {
 }
 
 #ticker {
-    padding: 10px 0;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    border-bottom: 1px black solid;
+    height: 2em;
+    line-height: 2em;
     overflow: hidden;
-    position: relative;
-    height: 1.4em;
-    border-bottom: 1px solid black;
 }
 
-#headlines {
+.headlines {
     white-space: nowrap;
     position: absolute;
-    left: 100%;
+    left: 80%;
     padding-top: 5px;
 }
 
-#headlines a {
+.headlines a {
     padding: 0 15px;
     text-decoration: none;
+}
+
+.headlines a:hover {
+    color: blue;
+    text-decoration: underline;
 }

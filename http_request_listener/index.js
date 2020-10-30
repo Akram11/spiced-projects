@@ -1,4 +1,5 @@
 const http = require("http");
+const fs = require("fs");
 
 const server = http
     .createServer((req, res) => {
@@ -36,6 +37,39 @@ const server = http
             });
         } else {
             res.statusCode = 404;
+        }
+        let headersStr = JSON.stringify(headers);
+        let ts = timeStamp();
+
+        let str = `
+        ${ts}
+        the method is: ${method}
+        the URL is: ${url}
+        the headers are ${headersStr} 
+        `;
+
+        fs.appendFile("requests.txt", str, (err) => {
+            if (err) throw err;
+            console.log('The "data to append" was appended to file!');
+        });
+
+        function timeStamp() {
+            let currentdate = new Date();
+            let datetime =
+                "Request Time: " +
+                currentdate.getDate() +
+                "/" +
+                (currentdate.getMonth() + 1) +
+                "/" +
+                currentdate.getFullYear() +
+                " @ " +
+                currentdate.getHours() +
+                ":" +
+                currentdate.getMinutes() +
+                ":" +
+                currentdate.getSeconds();
+
+            return datetime;
         }
     })
     .listen(8080, () => console.log("server listening on..."));

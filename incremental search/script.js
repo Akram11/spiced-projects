@@ -9,38 +9,38 @@ function search() {
         var value = input.val();
         var resultsHTML = "";
         var matches;
-        function ajaxCall() {
-            $.ajax({
-                url: "https://flame-egg.glitch.me/",
-                data: {
-                    q: value,
-                },
-                success: function (data) {
-                    if (value !== input.val()) {
-                        return;
-                    }
-                    if (value === "" && !data.length) {
-                        results.empty();
-                        return;
+        // function ajaxCall() {
+        $.ajax({
+            url: "https://flame-egg.glitch.me/",
+            data: {
+                q: value,
+            },
+            success: function (data) {
+                if (value !== input.val()) {
+                    return;
+                }
+                if (value === "" && !data.length) {
+                    results.empty();
+                    return;
+                } else {
+                    matches = data;
+                    if (!matches.length) {
+                        resultsHTML = "no results";
                     } else {
-                        matches = data;
-                        if (!matches.length) {
-                            resultsHTML = "no results";
-                        } else {
-                            matches.forEach(function (match) {
-                                resultsHTML += `<div class = 'country' > ${match}</div>`;
-                            });
-                        }
+                        matches.forEach(function (match) {
+                            resultsHTML += `<div class = 'country' > ${match}</div>`;
+                        });
                     }
-                    results.html(resultsHTML);
-                },
-                error: function (err) {
-                    console.log(err);
-                },
-            });
-        }
-        clearTimeout(timer);
-        timer = setTimeout(ajaxCall, 3000);
+                }
+                results.html(resultsHTML);
+            },
+            error: function (err) {
+                console.log(err);
+            },
+        });
+        // }
+        // clearTimeout(timer);
+        // timer = setTimeout(ajaxCall, 3000);
     };
 }
 
@@ -99,4 +99,10 @@ input.on("blur", function () {
     results.empty();
 });
 
-input.on("input focus", search());
+// input.on("input focus", search());
+
+input.on("input focus", function () {
+    // clearTimeout(timer);
+    // timer = setTimeout(search, 500);
+    search();
+});

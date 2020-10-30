@@ -13,7 +13,12 @@ close.addEventListener("click", function () {
     sideNav.classList.remove("slide");
 });
 
-overlay.addEventListener("click", function () {
-    overlay.style.visibility = "hidden";
-    sideNav.classList.remove("slide");
-});
+var modal = $("center-modal");
+console.log(modal.html());
+// overlay.addEventListener("click", function () {
+//     overlay.style.visibility = "hidden";
+//     sideNav.classList.remove("slide");
+// });
+// $(document).setTimeout(function () {
+//     $("#center-modal").css("visibility", "visible");
+// }, 2000);

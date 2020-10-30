@@ -1,0 +1,11 @@
+
+        Last Sync: 24/8/2020 @ 16:24:56
+        the method is: POST
+        the URL is: /
+        the headers are {"user-agent":"PostmanRuntime/7.26.3","accept":"*/*","postman-token":"172c297b-43fd-44d4-ab78-7991675faa17","host":"localhost:8080","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"0"} 
+        
+        Last Sync: 24/8/2020 @ 16:24:56
+        the method is: GET
+        the URL is: /amazing
+        the headers are {"user-agent":"PostmanRuntime/7.26.3","accept":"*/*","postman-token":"172c297b-43fd-44d4-ab78-7991675faa17","accept-encoding":"gzip, deflate, br","connection":"keep-alive","referer":"http://localhost:8080/","host":"localhost:8080"} 
+        

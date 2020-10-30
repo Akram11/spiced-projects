@@ -61,7 +61,7 @@ let gameObj = {
                 "You crawl through the tunnel and the tunnel leads to the beach. what do you do?",
             actions: "look",
         },
-        "Look": {
+        "look": {
             questions: "In the water you see a boat. What do you do?",
             actions: "get on boat",
         },
